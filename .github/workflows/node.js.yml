@@ -18,10 +18,11 @@ jobs:
     - name: checkout code
       uses: actions/checkout@v4
 
-    - name: ste up not.js
+    - name: Setup Node.js
       uses: actions/setup-node@v4
-      with:
-        node-version:'23'
+        with:
+          node-version: 18
+
     - name: frontend compiler syntax check
       run: |
         cd client
