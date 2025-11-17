@@ -11,24 +11,26 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - name: checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
           node-version: 18
 
-    - name: frontend compiler syntax check
-      run: |
-        cd client
-        find . -*name "*.js" -exec node --check {} +
-        
-    - name: backend compiler syntax check
-      run: |
-        cd client
-        find . -*name "*.js" -exec node --check {} +
+      # FRONTEND SYNTAX CHECK
+      - name: Frontend compiler syntax check
+        run: |
+          cd client
+          find . -name "*.js" -exec node --check {} +
+
+      # BACKEND SYNTAX CHECK
+      - name: Backend compiler syntax check
+        run: |
+          cd server
+          find . -name "*.js" -exec node --check {} +
+
